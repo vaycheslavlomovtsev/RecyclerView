@@ -19,10 +19,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
+
         final City city = mDataset[position];
-        holder.mTextView.setText(city.getName());
+        holder.mTextViewName.setText(city.getName());
         holder.mTextViewPopulation.setText(String.valueOf(city.getPopulation()));
 
     }
@@ -32,20 +31,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return mDataset.length;
     }
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        public final TextView mTextView;
+        public final TextView mTextViewName;
         public final TextView mTextViewPopulation;
+
         public ViewHolder(View v) {
             super(v);
-            mTextView = v.findViewById(R.id.text_view);
-            mTextViewPopulation = v.findViewById(R.id.text_population);
+            mTextViewName = v.findViewById(R.id.name_textview);
+            mTextViewPopulation = v.findViewById(R.id.population_textview);
         }
     }
-    // Provide a suitable constructor (depends on the kind of dataset)
 
 
     @Override

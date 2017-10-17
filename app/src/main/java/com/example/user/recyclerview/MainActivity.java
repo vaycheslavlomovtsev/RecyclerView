@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_recyclerview);
+        setContentView(R.layout.activity_main);
 
         final RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
