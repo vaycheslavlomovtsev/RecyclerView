@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">RecyclerView</string>
+    <string name="menu_azsort">А - Я Сорировка</string>
+    <string name="menu_popsort">9 – 1 Сортировка</string>
+    <string name="menu_randsort">Исходная Сортировка</string>
 </resources>
