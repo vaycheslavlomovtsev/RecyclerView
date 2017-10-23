@@ -1,6 +1,5 @@
 package com.example.user.recyclerview;
 
-import java.sql.Array;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -15,7 +14,7 @@ class CityRepository {
     public static final int HZ_ORDER = 2;
 
     private City[] cities;
-    private City[] sort_cities;
+    private City[] sort_cities_hz;
     private City[] sort_cities_ab;
 
     private static final CityRepository ourInstance = new CityRepository();
@@ -29,29 +28,34 @@ class CityRepository {
             case WITHOUT_ORDER:
                 return cities;
             case AZ_ORDER:
-                sort_cities_ab = Arrays.copyOf(cities, cities.length);
-                Arrays.sort(sort_cities_ab, new Comparator<City>() {
-                    @Override
-                    public int compare(City o1, City o2) {
-                        return o1.getName().compareTo(o2.getName());
-                    }
-                });
-                return sort_cities_ab;
-            case HZ_ORDER:
-                sort_cities = Arrays.copyOf(cities, cities.length);
-
-                Arrays.sort(sort_cities, new Comparator<City>() {
-                    @Override
-                    public int compare(City o1, City o2) {
-                        if (o1.getPopulation() > o2.getPopulation()) {
-                            return -1;
-                        } else if (o1.getPopulation() > o2.getPopulation()) {
-                            return 1;
+                if (sort_cities_ab == null) {
+                    sort_cities_ab = Arrays.copyOf(cities, cities.length);
+                    Arrays.sort(sort_cities_ab, new Comparator<City>() {
+                        @Override
+                        public int compare(City o1, City o2) {
+                            return o1.getName().compareTo(o2.getName());
                         }
-                        return 0;
-                    }
-                });
-                return sort_cities;
+                    });
+                    return sort_cities_ab;
+                } else
+                    return sort_cities_ab;
+            case HZ_ORDER:
+                if (sort_cities_hz == null) {
+                    sort_cities_hz = Arrays.copyOf(cities, cities.length);
+                    Arrays.sort(sort_cities_hz, new Comparator<City>() {
+                        @Override
+                        public int compare(City o1, City o2) {
+                            if (o1.getPopulation() > o2.getPopulation()) {
+                                return -1;
+                            } else if (o1.getPopulation() < o2.getPopulation()) {
+                                return 1;
+                            }
+                            return 0;
+                        }
+                    });
+                    return sort_cities_hz;
+                } else
+                    return sort_cities_hz;
         }
         return cities;
     }

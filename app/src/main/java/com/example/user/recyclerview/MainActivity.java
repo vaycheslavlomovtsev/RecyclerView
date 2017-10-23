@@ -1,6 +1,5 @@
 package com.example.user.recyclerview;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
-    private MyAdapter mAdapter;
+    private CityAdapter Adapter;
     private int sortType = CityRepository.WITHOUT_ORDER;
     private String state;
 
@@ -19,14 +18,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
+        Toolbar Toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(Toolbar);
 
         final RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        mAdapter = new MyAdapter();
+        Adapter = new CityAdapter();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(Adapter);
     }
 
     @Override
@@ -55,8 +54,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mAdapter.setmDataset(CityRepository.getInstance().getCities(sortType));
-        mAdapter.notifyDataSetChanged();
+        updateList();
     }
 
     @Override
@@ -72,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateList() {
-        mAdapter.setmDataset(CityRepository.getInstance().getCities(sortType));
-        mAdapter.notifyDataSetChanged();
+        Adapter.setDataset(CityRepository.getInstance().getCities(sortType));
+
     }
+
 }

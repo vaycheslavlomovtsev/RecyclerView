@@ -1,15 +1,10 @@
 package com.example.user.recyclerview;
 
-import android.support.annotation.NonNull;
-
-import java.lang.*;
-import java.lang.Comparable;
-
 /**
  * Created by user on 16.10.17.
  */
 
-public class City  {
+public class City {
     private String name;
     private int population;
 
@@ -18,7 +13,9 @@ public class City  {
         this.population = population;
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
     public void setName(String name) {
         this.name = name;
